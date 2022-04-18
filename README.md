@@ -1,4 +1,4 @@
-# Slideshare Tools API
+# Slideshare Image API
 
 ## Usage
 
