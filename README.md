@@ -38,5 +38,5 @@ https://slideshare-tools-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 
 * Typescript
 * Nodejs
-* Express
+* Expressjs
 * Cheerio
