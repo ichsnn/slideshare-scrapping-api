@@ -4,13 +4,13 @@
 
 Base URL : `https://slideshare-image-api.herokuapp.com/`
 
-### Get Slides Image Source :
+### Get Slides Image Source
 
 ``
 https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 ``
 
-#### Output example :
+#### Output example
 
 ```get image output
 [
