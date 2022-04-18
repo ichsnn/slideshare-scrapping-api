@@ -27,7 +27,25 @@ const getSlidesImg: any = (req: Request, res: Response, response: any) => {
                 }
             })
         })
-        return slideImgColl;
+
+        const imgColls: any[] = [];
+
+        slideImgColl.map((v : string, i) => {
+            const src = v.split(', ')
+            const x = src.map((v) => {
+                const results = v.split(' ');
+                return {
+                    resolution: results[1],
+                    src: results[0],
+                }
+
+            })
+            imgColls.push({'slide' : i + 1, image : x})
+        })
+
+        console.log(imgColls)
+
+        return imgColls;
     } catch (error) {
         throw error;
     }
@@ -39,7 +57,7 @@ const SlidesController = {
             const url: any = req.query.url;
             const response: any = await Service.fetchService(url);
             const imgCol = getSlidesImg(req, res, response);
-            res.send(imgCol);
+            res.json(imgCol);
         } catch (error) {
             next(error)
         }
