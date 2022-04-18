@@ -12,7 +12,8 @@ https://slideshare-tools-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 
 #### Output example :
 
-```[
+```get image output
+[
     {
         "slide": 1,
         "image": [
