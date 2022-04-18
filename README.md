@@ -2,12 +2,12 @@
 
 ## Usage
 
-Base URL : `https://slideshare-tools-api.herokuapp.com/`
+Base URL : `https://slideshare-image-api.herokuapp.com/`
 
 ### Get Slides Image Source :
 
 ``
-https://slideshare-tools-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
+https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 ``
 
 #### Output example :
