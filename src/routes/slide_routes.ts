@@ -3,6 +3,6 @@ import { SlidesController } from "../controllers";
 
 const slides = Router();
 
-slides.get('/slides', SlidesController.slidesImg)
+slides.get('/api/slides/img', SlidesController.slidesImg)
 
 export default slides;
