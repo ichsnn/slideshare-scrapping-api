@@ -7,11 +7,13 @@ import routes from "./routes";
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(routes);
 app.use(error);
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000')
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
 });
