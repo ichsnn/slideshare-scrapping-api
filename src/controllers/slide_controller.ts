@@ -62,7 +62,7 @@ const SlidesController = {
             const url: any = req.query.url;
             const response: any = await Service.fetchService(url);
             const imgCol = getSlidesImg(req, res, response);
-            res.json(imgCol);
+            res.json({status: true, results: imgCol});
         } catch (error) {
             next(error)
         }
