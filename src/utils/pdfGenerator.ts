@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer";
-import hb from "handlebars";
 
 const pdfGenerator = async (html : any) => {
     const browser  = await puppeteer.launch();
