@@ -4,8 +4,10 @@ const pdfGenerator = async (html : any) => {
     const browser  = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(html);
-    await page.pdf({path: './public/files/slideshare.pdf'});
+    console.log(page)
+    const pdf = await page.pdf({height: "576px", width: "1024px", preferCSSPageSize: true});
     await browser.close();
+    return pdf;
 }
 
 export default pdfGenerator

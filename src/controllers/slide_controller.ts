@@ -69,10 +69,11 @@ async function getImageCol(req: Request, res: Response) {
 }
 
 function setHTMLTemplate(imgCol: object[]) {
-    let html = '';
+    let html = '<html><head><style>*{margin: 0;padding: 0;}@page{margin: 0;}</style></head><body>';
     imgCol.map((value: any) => {
        html += imgTemplate(value.image[2].src, `slide ${value.slide}`);
     })
+    html += '</body></html>'
     return html;
 }
 
@@ -94,8 +95,9 @@ const SlidesController = {
         try {
             const imgCol = await getImageCol(req, res);
             const html = setHTMLTemplate(imgCol);
-            await pdfGenerator(html);
-            res.send(html)
+            const pdf = await pdfGenerator(html);
+            res.contentType("application/pdf");
+            res.send(pdf)
         } catch (error) {
             next(error);
         }
