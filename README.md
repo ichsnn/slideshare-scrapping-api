@@ -37,9 +37,17 @@ https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 }
 ```
 
+### Donwload Slides PDF
+
+``
+https://slideshare-image-api.herokuapp.com/api/slides/download?url=SLIDESHARE_URL
+``
+
 ## Built With
 
 * Typescript
 * Nodejs
 * Expressjs
 * Cheerio
+* Axios
+* Puppeteer
