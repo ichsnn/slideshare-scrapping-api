@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import cheerio from "cheerio";
 import { Service } from "../helper";
 import { next } from "cheerio/lib/api/traversing";
+import pdfGenerator from "../utils/pdfGenerator";
 
 // function to parse image src on html response
 const getSlidesImg: any = (req: Request, res: Response, response: any) => {
@@ -93,6 +94,7 @@ const SlidesController = {
         try {
             const imgCol = await getImageCol(req, res);
             const html = setHTMLTemplate(imgCol);
+            await pdfGenerator(html);
             res.send(html)
         } catch (error) {
             next(error);
