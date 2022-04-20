@@ -37,7 +37,7 @@ https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 }
 ```
 
-### Donwload Slides PDF
+### Download Slides PDF
 
 ``
 https://slideshare-image-api.herokuapp.com/api/slides/download?url=SLIDESHARE_URL
