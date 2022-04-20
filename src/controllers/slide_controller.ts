@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import cheerio from "cheerio";
 import { Service } from "../helper";
+import { next } from "cheerio/lib/api/traversing";
 
 // function to parse image src on html response
 const getSlidesImg: any = (req: Request, res: Response, response: any) => {
@@ -55,16 +56,46 @@ const getSlidesImg: any = (req: Request, res: Response, response: any) => {
     }
 }
 
+async function getImageCol(req: Request, res: Response) {
+    try {
+        const url: any = req.query.url;
+        const response: any = await Service.fetchService(url);
+        const imgCol = getSlidesImg(req, res, response);
+        return imgCol;
+    } catch (error : any) {
+        throw error;
+    }
+}
+
+function setHTMLTemplate(imgCol: object[]) {
+    let html = '';
+    imgCol.map((value: any) => {
+       html += imgTemplate(value.image[2].src, `slide ${value.slide}`);
+    })
+    return html;
+}
+
+function imgTemplate(src : any, alt : any) {
+    return `<img src="${src}" alt="${alt}">`
+}
+
 // Controller
 const SlidesController = {
     slidesImg: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const url: any = req.query.url;
-            const response: any = await Service.fetchService(url);
-            const imgCol = getSlidesImg(req, res, response);
-            res.json({status: true, results: imgCol});
+            const imgCol = await getImageCol(req, res);
+            res.json({ status: true, results: imgCol });
         } catch (error) {
             next(error)
+        }
+    },
+    slidesDownload: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const imgCol = await getImageCol(req, res);
+            const html = setHTMLTemplate(imgCol);
+            res.send(html)
+        } catch (error) {
+            next(error);
         }
     }
 }
