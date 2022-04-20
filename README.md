@@ -6,7 +6,7 @@ Base URL : `https://slideshare-image-api.herokuapp.com/`
 
 ### Get Slides Image Source
 
-``
+`GET` ``
 https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 ``
 
@@ -39,7 +39,7 @@ https://slideshare-image-api.herokuapp.com/api/slides/img?url=SLIDESHARE_URL
 
 ### Download Slides PDF
 
-``
+`GET` ``
 https://slideshare-image-api.herokuapp.com/api/slides/download?url=SLIDESHARE_URL
 ``
 
