@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import pdfGenerator from "../utils/pdfGenerator";
-import { htmlTemplate, slidesScrap } from "../utils";
+import { filenameParser, htmlTemplate, slidesScrap } from "../utils";
 
 // Controller
 const SlidesController = {
@@ -18,7 +18,9 @@ const SlidesController = {
             const html = htmlTemplate(imgCol);
             const pdf = await pdfGenerator(html);
             const filePath = './files/slideshare.pdf';
-            res.download('./files/slideshare.pdf')
+            const filename = filenameParser(req.query.url) + ".pdf";
+            console.log(filename)
+            res.download(filePath, filename)
         } catch (error) {
             next(error);
         }
