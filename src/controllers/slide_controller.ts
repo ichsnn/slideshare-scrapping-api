@@ -16,7 +16,7 @@ const SlidesController = {
         try {
             const imgCol = await slidesScrap.getImageCol(req, res);
             const html = htmlTemplate(imgCol);
-            const pdf = await pdfGenerator(html);
+            await pdfGenerator(html);
             const filePath = './files/slideshare.pdf';
             const filename = filenameParser(req.query.url) + ".pdf";
             console.log(filename)
