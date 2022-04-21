@@ -7,7 +7,9 @@ const pdfGenerator = async (html : any) => {
     });
     const page = await browser.newPage();
     await page.setContent(html);
-    await page.pdf({path: './files/slideshare.pdf', height: "576px", width: "1024px", preferCSSPageSize: true});
+    const imageBounds = await (await page.$('img'))?.boundingBox()
+    console.log(imageBounds);
+    await page.pdf({path: './files/slideshare.pdf', height: `${imageBounds?.height}px`, width: `${imageBounds?.width}px`, preferCSSPageSize: true});
     await browser.close();
 }
 
