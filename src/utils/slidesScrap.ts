@@ -9,7 +9,6 @@ const slidesScrap = {
             const $ = cheerio.load(response.data);
             const slideContainer = $('#slide-container');
             const slideImgColl: any[] = [] // doesn't contain noscript tag
-            const lazyColl: any[] = []; // contain noscript tag
 
             // search slide contain img || srcset
             slideContainer.find('.slide').each((i, e) => {
@@ -17,6 +16,7 @@ const slidesScrap = {
                 if (srcset = $(e).find('img').attr('srcset')) {
                     slideImgColl.push(srcset)
                 } else {
+                    // Convert image contain noscript or doesnt include img tag on first node
                     let doc = cheerio.parseHTML($(e).text());
                     $(doc).each((i, v) => {
                         if (srcset = $(v).attr('srcset')) {
