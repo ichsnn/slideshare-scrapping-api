@@ -15,6 +15,8 @@ const slidesScrap = {
             slideContainer.find('.slide').each((i, e) => {
                 let src;
                 if (src = $(e).find('img').attr('srcset')) {
+                    let doc = cheerio.parseHTML($(src).text());
+                    console.log(doc)
                     slideImgColl.push(src)
                 } else {
                     lazyColl.push($(e))
