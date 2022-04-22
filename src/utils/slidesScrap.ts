@@ -13,25 +13,17 @@ const slidesScrap = {
 
             // search slide contain img || srcset
             slideContainer.find('.slide').each((i, e) => {
-                let src;
-                if (src = $(e).find('img').attr('srcset')) {
-                    let doc = cheerio.parseHTML($(src).text());
-                    console.log(doc)
-                    slideImgColl.push(src)
+                let srcset;
+                if (srcset = $(e).find('img').attr('srcset')) {
+                    slideImgColl.push(srcset)
                 } else {
-                    lazyColl.push($(e))
+                    let doc = cheerio.parseHTML($(e).text());
+                    $(doc).each((i, v) => {
+                        if (srcset = $(v).attr('srcset')) {
+                            slideImgColl.push(srcset)
+                        }
+                    })
                 }
-            })
-
-            // parse html on noscript tag and search img || srcset
-            lazyColl.map((v: cheerio.Element, j) => {
-                let doc = cheerio.parseHTML($(v).text());
-                $(doc).each((i, e) => {
-                    let src;
-                    if (src = $(e).attr('srcset')) {
-                        slideImgColl.push(src);
-                    }
-                })
             })
 
             const imgColls: any[] = []; // for objects
