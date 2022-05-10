@@ -19,7 +19,6 @@ const SlidesController = {
             await pdfGenerator(html);
             const filePath = './files/slideshare.pdf';
             const filename = filenameParser(req.query.url) + ".pdf";
-            console.log(filename)
             res.download(filePath, filename)
         } catch (error) {
             next(error);
