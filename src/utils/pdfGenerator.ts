@@ -8,8 +8,9 @@ const pdfGenerator = async (html : any) => {
     const page = await browser.newPage();
     await page.setContent(html);
     const imageBounds = await (await page.$('img'))?.boundingBox()
-    await page.pdf({path: './files/slideshare.pdf', height: `${imageBounds?.height}px`, width: `${imageBounds?.width}px`, preferCSSPageSize: true});
+    const pdf = await page.pdf({height: `${imageBounds?.height}px`, width: `${imageBounds?.width}px`, preferCSSPageSize: true});
     await browser.close();
+    return pdf;
 }
 
 export default pdfGenerator

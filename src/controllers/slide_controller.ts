@@ -16,10 +16,12 @@ const SlidesController = {
         try {
             const imgCol = await slidesScrap.getImageCol(req, res);
             const html = htmlTemplate(imgCol);
-            await pdfGenerator(html);
-            const filePath = './files/slideshare.pdf';
+            const pdf = await pdfGenerator(html);
             const filename = filenameParser(req.query.url) + ".pdf";
-            res.download(filePath, filename)
+            res.setHeader('Access-Control-Expose-Headers','Content-Disposition');
+            res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+            res.setHeader('Content-Type', 'application/pdf')
+            res.send(pdf);
         } catch (error) {
             next(error);
         }
