@@ -7,10 +7,20 @@ import routes from "./routes";
 
 const app = express();
 
+const whitelist = ['https://ichsnn.github.io/*', 'http://localhost:5500/*', 'http://127.0.0.1:5500/*']
+
+const corsOptions : any = {
+  origin: function (origin : any, callback : any) {
+    if(whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    }
+  }
+}
+
 const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({origin: corsOptions}));
 app.use(routes);
 app.use(error);
 
