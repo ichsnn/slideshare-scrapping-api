@@ -7,7 +7,7 @@ import routes from "./routes";
 
 const app = express();
 
-const whitelist = ['https://ichsnn.github.io', 'http://localhost:5500', 'http://127.0.0.1:5500']
+const whitelist = ['https://ichsnn.github.io']
 
 const corsOptions = {
   origin: function (origin: any, callback: any) {
